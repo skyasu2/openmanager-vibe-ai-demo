@@ -6,12 +6,18 @@ let updateInterval = null;
 // DOM이 로드되면 실행
 document.addEventListener('DOMContentLoaded', () => {
     // 로그인 상태 확인
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    if (isLoggedIn === 'true') {
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    
+    if (isLoggedIn) {
+        const currentUser = localStorage.getItem('currentUser') || '관리자';
+        document.getElementById('currentUser').textContent = currentUser;
         showDashboard();
     } else {
         showLoginSection();
     }
+    
+    // 서버 데이터 초기화
+    initializeServerData();
 });
 
 // 로그인 처리
@@ -35,19 +41,19 @@ function showDashboard() {
     document.getElementById('dashboard').classList.remove('hidden');
     document.getElementById('scenarioSection').classList.add('hidden');
     
-    // 사용자 이름 표시
-    const currentUser = localStorage.getItem('currentUser') || '관리자';
-    document.getElementById('currentUser').textContent = currentUser;
-
-    // 서버 데이터 초기화 및 업데이트 시작
-    initializeServerData();
-    startDataUpdates();
+    // 서버 데이터 업데이트
+    updateDashboard();
 }
 
 // 로그인 섹션 표시
 function showLoginSection() {
     document.getElementById('loginSection').classList.remove('hidden');
     document.getElementById('dashboard').classList.add('hidden');
+    
+    // 기존 업데이트 간격 정리
+    if (updateInterval) {
+        clearInterval(updateInterval);
+    }
 }
 
 // 시나리오 선택기 표시
@@ -55,6 +61,11 @@ function showScenarioSelector() {
     document.getElementById('scenarioSection').classList.remove('hidden');
     document.querySelector('.nav-item:nth-child(2)').classList.add('active');
     document.querySelector('.nav-item:nth-child(1)').classList.remove('active');
+    
+    // 기본 응답 표시
+    if (!currentScenario) {
+        showDefaultResponse();
+    }
 }
 
 // 서버 데이터 초기화
