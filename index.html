@@ -39,44 +39,38 @@
                 </button>
             </header>
 
-            <!-- 사이드바 -->
-            <div class="dashboard-sidebar">
-                <!-- 장애 상황 선택 -->
-                <div class="scenario-selector">
-                    <h3><i class="fas fa-exclamation-triangle"></i> 장애 상황 선택</h3>
-                    <select id="scenarioSelect" onchange="handleScenarioChange()">
-                        <option value="">장애 상황을 선택하세요</option>
-                        <option value="high_cpu"><i class="fas fa-microchip"></i> CPU 사용률 급증</option>
-                        <option value="memory_leak"><i class="fas fa-memory"></i> 메모리 누수</option>
-                        <option value="disk_full"><i class="fas fa-hdd"></i> 디스크 공간 부족</option>
-                        <option value="service_down"><i class="fas fa-server"></i> 서비스 다운</option>
-                    </select>
-                </div>
-
-                <!-- AI 응답 카드 -->
-                <div class="ai-response" id="aiResponse">
-                    <div class="response-card">
-                        <div class="response-header">
-                            <img src="assets/ai-avatar.png" alt="AI Assistant" class="ai-avatar">
-                            <h3>AI 어시스턴트</h3>
-                        </div>
-                        <div class="response-content" id="responseContent">
-                            <p><i class="fas fa-info-circle"></i> 장애 상황을 선택하면 AI 어시스턴트가 분석과 대응 방안을 제시합니다.</p>
-                        </div>
-                    </div>
-                </div>
+            <!-- 서버 상태 요약 -->
+            <div class="status-summary" id="statusSummary">
+                <!-- 상태 요약이 여기에 동적으로 추가됩니다 -->
             </div>
 
-            <!-- 메인 컨텐츠 -->
-            <div class="dashboard-content">
-                <!-- 서버 상태 요약 -->
-                <div class="status-summary" id="statusSummary">
-                    <!-- 상태 요약이 여기에 동적으로 추가됩니다 -->
-                </div>
+            <!-- 서버 목록 -->
+            <div class="server-list" id="serverList">
+                <!-- 서버 목록이 여기에 동적으로 추가됩니다 -->
+            </div>
 
-                <!-- 서버 목록 -->
-                <div class="server-list" id="serverList">
-                    <!-- 서버 목록이 여기에 동적으로 추가됩니다 -->
+            <!-- 장애 상황 선택 -->
+            <div class="scenario-selector">
+                <h3><i class="fas fa-exclamation-triangle"></i> 장애 상황 선택</h3>
+                <select id="scenarioSelect" onchange="handleScenarioChange()">
+                    <option value="">장애 상황을 선택하세요</option>
+                    <option value="high_cpu"><i class="fas fa-microchip"></i> CPU 사용률 급증</option>
+                    <option value="memory_leak"><i class="fas fa-memory"></i> 메모리 누수</option>
+                    <option value="disk_full"><i class="fas fa-hdd"></i> 디스크 공간 부족</option>
+                    <option value="service_down"><i class="fas fa-server"></i> 서비스 다운</option>
+                </select>
+            </div>
+
+            <!-- AI 응답 카드 -->
+            <div class="ai-response" id="aiResponse">
+                <div class="response-card">
+                    <div class="response-header">
+                        <img src="assets/ai-avatar.png" alt="AI Assistant" class="ai-avatar">
+                        <h3>AI 어시스턴트</h3>
+                    </div>
+                    <div class="response-content" id="responseContent">
+                        <p><i class="fas fa-info-circle"></i> 장애 상황을 선택하면 AI 어시스턴트가 분석과 대응 방안을 제시합니다.</p>
+                    </div>
                 </div>
             </div>
         </div>
