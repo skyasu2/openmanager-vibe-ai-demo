@@ -3,73 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenManager Vibe AI Assistant Demo</title>
+    <title>OpenManager Vibe AI Assistant</title>
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <!-- 로그인 섹션 -->
-        <div class="login-section" id="loginSection">
-            <h1><i class="fas fa-robot"></i> OpenManager Vibe AI Assistant</h1>
-            <div class="demo-description">
-                <h2>데모 소개</h2>
-                <p>이 데모는 OpenManager 운영 포털의 AI 어시스턴트 기능을 시연합니다.</p>
-                <ul>
-                    <li><i class="fas fa-chart-line"></i> 다양한 장애 상황에 대한 AI 분석</li>
-                    <li><i class="fas fa-lightbulb"></i> 실시간 대응 방안 제시</li>
-                    <li><i class="fas fa-shield-alt"></i> 영향도 분석 및 모니터링</li>
-                </ul>
-                <p class="demo-note"><i class="fas fa-info-circle"></i> 아래 버튼을 클릭하여 데모를 시작하세요.</p>
-            </div>
-            <div class="login-form">
-                <button onclick="handleLogin()" class="demo-login-btn">
-                    <i class="fas fa-play"></i> 데모 시작하기
-                </button>
+        <div id="loginSection" class="login-section">
+            <div class="login-card">
+                <h1><i class="fas fa-server"></i> OpenManager Vibe AI</h1>
+                <p>서버 모니터링 AI 어시스턴트</p>
+                <div class="login-form">
+                    <input type="text" id="username" placeholder="사용자 이름" class="input-field">
+                    <input type="password" id="password" placeholder="비밀번호" class="input-field">
+                    <button onclick="handleLogin()" class="btn-primary">
+                        <i class="fas fa-sign-in-alt"></i> 로그인
+                    </button>
+                </div>
             </div>
         </div>
 
-        <!-- 메인 대시보드 -->
-        <div class="dashboard" id="dashboard" style="display: none;">
-            <header>
-                <h2><i class="fas fa-robot"></i> AI 어시스턴트 대시보드</h2>
-                <button onclick="handleLogout()">
-                    <i class="fas fa-sign-out-alt"></i> 로그아웃
-                </button>
-            </header>
-
-            <!-- 서버 상태 요약 -->
-            <div class="status-summary" id="statusSummary">
-                <!-- 상태 요약이 여기에 동적으로 추가됩니다 -->
+        <div id="dashboard" class="dashboard hidden">
+            <div class="sidebar">
+                <div class="logo">
+                    <i class="fas fa-server"></i>
+                    <span>OpenManager Vibe</span>
+                </div>
+                <nav>
+                    <button class="nav-item active" onclick="showDashboard()">
+                        <i class="fas fa-chart-line"></i> 대시보드
+                    </button>
+                    <button class="nav-item" onclick="showScenarioSelector()">
+                        <i class="fas fa-robot"></i> AI 시나리오
+                    </button>
+                </nav>
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <span id="currentUser">관리자</span>
+                    <button onclick="handleLogout()" class="btn-logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
             </div>
 
-            <!-- 서버 목록 -->
-            <div class="server-list" id="serverList">
-                <!-- 서버 목록이 여기에 동적으로 추가됩니다 -->
-            </div>
-
-            <!-- 장애 상황 선택 -->
-            <div class="scenario-selector">
-                <h3><i class="fas fa-exclamation-triangle"></i> 장애 상황 선택</h3>
-                <select id="scenarioSelect" onchange="handleScenarioChange()">
-                    <option value="">장애 상황을 선택하세요</option>
-                    <option value="high_cpu"><i class="fas fa-microchip"></i> CPU 사용률 급증</option>
-                    <option value="memory_leak"><i class="fas fa-memory"></i> 메모리 누수</option>
-                    <option value="disk_full"><i class="fas fa-hdd"></i> 디스크 공간 부족</option>
-                    <option value="service_down"><i class="fas fa-server"></i> 서비스 다운</option>
-                </select>
-            </div>
-
-            <!-- AI 응답 카드 -->
-            <div class="ai-response" id="aiResponse">
-                <div class="response-card">
-                    <div class="response-header">
-                        <img src="assets/ai-avatar.png" alt="AI Assistant" class="ai-avatar">
-                        <h3>AI 어시스턴트</h3>
+            <div class="main-content">
+                <div class="header">
+                    <h2><i class="fas fa-chart-line"></i> 서버 모니터링 대시보드</h2>
+                    <div class="header-actions">
+                        <button class="btn-refresh" onclick="refreshData()">
+                            <i class="fas fa-sync-alt"></i> 새로고침
+                        </button>
                     </div>
-                    <div class="response-content" id="responseContent">
-                        <p><i class="fas fa-info-circle"></i> 장애 상황을 선택하면 AI 어시스턴트가 분석과 대응 방안을 제시합니다.</p>
+                </div>
+
+                <div class="status-summary" id="statusSummary">
+                    <!-- 상태 요약이 여기에 동적으로 추가됩니다 -->
+                </div>
+
+                <div class="server-list" id="serverList">
+                    <!-- 서버 목록이 여기에 동적으로 추가됩니다 -->
+                </div>
+
+                <div class="scenario-section hidden" id="scenarioSection">
+                    <div class="scenario-selector">
+                        <h3>시나리오 선택</h3>
+                        <div class="scenario-list">
+                            <button class="scenario-item" onclick="handleScenarioChange('cpu')">
+                                <i class="fas fa-microchip"></i> CPU 사용률 문제
+                            </button>
+                            <button class="scenario-item" onclick="handleScenarioChange('memory')">
+                                <i class="fas fa-memory"></i> 메모리 누수
+                            </button>
+                            <button class="scenario-item" onclick="handleScenarioChange('disk')">
+                                <i class="fas fa-hdd"></i> 디스크 공간 부족
+                            </button>
+                            <button class="scenario-item" onclick="handleScenarioChange('service')">
+                                <i class="fas fa-cogs"></i> 서비스 중단
+                            </button>
+                        </div>
+                    </div>
+                    <div class="ai-response" id="aiResponse">
+                        <!-- AI 응답이 여기에 동적으로 추가됩니다 -->
                     </div>
                 </div>
             </div>

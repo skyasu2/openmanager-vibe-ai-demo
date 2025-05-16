@@ -1,51 +1,52 @@
-# OpenManager Vibe AI Assistant Demo
+# OpenManager Vibe AI Assistant
 
-## 프로젝트 소개
-이 프로젝트는 OpenManager 운영 포털의 느낌을 반영한 웹 기반 AI 어시스턴트 데모입니다.  
-Cursor Pro의 Vibe Coding 기능을 통해, 운영 경보에 대한 자연어 설명, 대응방안 안내, 상태 요약 등의 기능을 제공합니다.
-
-## 기술 스택
-- HTML / CSS / JavaScript (Vanilla)
-- GPT-4o / Claude 연동 없이 사전 정의된 응답으로 시연 가능
-- Netlify 배포 가능 구조
-- GitHub Actions, 커밋 자동화 등은 추후 추가 가능
+OpenManager Vibe AI Assistant는 서버 모니터링을 위한 AI 기반 대시보드입니다. 100대의 서버를 실시간으로 모니터링하고, 문제 상황에 대한 AI 분석과 해결 방안을 제시합니다.
 
 ## 주요 기능
-- [x] 로그인 UI (디자인 목적용, 기능 없음)
-- [x] 장애 상황 선택 → 자동 프롬프트 생성
-- [x] AI 어시스턴트 응답 카드 UI
-- [x] 경보 시나리오별 자연어 질의/응답 시뮬레이션
-- [ ] GPT 연동 (선택사항)
-- [ ] Slack/Email 등 알림 연동 (선택사항)
 
-## 향후 계획
-- [ ] 프롬프트 DB화를 통한 질의 다양화
-- [ ] 실제 운영환경에 적용할 수 있는 서버사이드 연동
+- **실시간 서버 모니터링**
+  - 100대 서버의 CPU, 메모리, 디스크, 네트워크 상태 모니터링
+  - 10분마다 자동 데이터 업데이트
+  - 상태별 시각화 (정상, 경고, 위험)
 
-## 실행 방법
+- **AI 기반 문제 분석**
+  - CPU 사용률 문제
+  - 메모리 누수
+  - 디스크 공간 부족
+  - 서비스 중단
+
+- **상세 분석 보고서**
+  - 문제 원인 분석
+  - 영향도 평가
+  - 해결 방안 제시
+  - 모니터링 항목 추천
+
+## 기술 스택
+
+- HTML5
+- CSS3 (Flexbox, Grid)
+- JavaScript (ES6+)
+- Font Awesome 아이콘
+- Google Fonts (Roboto, Noto Sans KR)
+
+## 시작하기
+
 1. 저장소 클론
 ```bash
-git clone [repository-url]
+git clone https://github.com/skyasu2/openmanager-vibe-ai-demo.git
 ```
 
-2. `index.html` 또는 `demo.html` 실행
-- 로컬에서 직접 파일을 열거나
-- 간단한 웹 서버를 통해 실행
+2. 웹 브라우저에서 `index.html` 파일 열기
 
-3. Netlify 배포
-- `main` 브랜치를 Netlify에 연결하여 자동 배포
+## 데모 계정
+
+- 사용자 이름: admin
+- 비밀번호: admin
+
+## 개발 가이드
+
+자세한 개발 가이드와 아키텍처 설명은 [DEVELOPMENT.md](DEVELOPMENT.md)를 참고하세요.
 
 ## 라이선스
-Internal use only / INSOFT Submission
 
-## 프로젝트 구조
-```
-openmanager-vibe-ai-demo/
-├── index.html          # 메인 HTML 파일
-├── css/
-│   └── style.css      # 스타일시트
-├── js/
-│   └── main.js        # 메인 JavaScript 파일
-└── assets/            # 이미지 등 정적 자원
-    └── ai-avatar.png  # AI 어시스턴트 아바타
-``` 
+MIT License 
